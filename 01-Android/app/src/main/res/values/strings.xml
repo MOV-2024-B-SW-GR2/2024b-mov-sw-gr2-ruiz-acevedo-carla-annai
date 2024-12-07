@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">gr2sw2024b_cara</string>
+    <string name="greeting">Hello World :D</string>
+    <color name="greeting_color">#B22BC7</color>
+</resources>

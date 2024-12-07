@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_prueba">Hello - English LAND</string>
+    <color name="background_color">#673AB7</color>
+    <color name="text_color">#9C27B0</color>
+</resources>

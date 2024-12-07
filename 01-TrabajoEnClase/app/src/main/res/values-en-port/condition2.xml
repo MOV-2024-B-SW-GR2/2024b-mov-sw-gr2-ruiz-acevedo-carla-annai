@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_prueba">Hello - English PORT</string>
+    <color name="background_color">#FFEB3B</color>
+    <color name="text_color">#FF9800</color>
+</resources>

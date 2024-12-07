@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_prueba">Hello - ESPAÑOL LAND</string>
+    <color name="background_color">#DE148AA8</color>
+    <color name="text_color">#4CAF50</color>
+</resources>
