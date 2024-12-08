@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251919747706",
+    "project_id": "mov-2024b-sw-gr2-raca",
+    "storage_bucket": "mov-2024b-sw-gr2-raca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251919747706:android:94624270df58f0e36ac9c3",
+        "android_client_info": {
+          "package_name": "com.example.gr2sw2024b_cara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIgwa-eO4f-sQQ0ZsYBMYCcwjtPk_y9no"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

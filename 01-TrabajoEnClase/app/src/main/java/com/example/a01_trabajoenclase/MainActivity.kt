@@ -1,8 +1,6 @@
-package com.example.gr2sw2024b_cara
+package com.example.a01_trabajoenclase
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,14 +16,5 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val botonCicloVida = findViewById<Button>(R.id.btn_ciclo_vida)
-        botonCicloVida
-            .setOnClickListener {
-                irActividad(ACicloVida::class.java)
-            }
-    }
-
-    fun irActividad(clase: Class<*>){
-        startActivity(Intent(this, clase))
     }
 }
