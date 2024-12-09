@@ -111,10 +111,17 @@ class CRUD {
     }
 
     fun deleteCampo(nombre: String) {
-        campos.removeIf { it.nombre == nombre }
-        pozos.removeIf { findCampoNameByPozo(it) == nombre }
+        val campo = campos.find { it.nombre == nombre }
+        if (campo == null) {
+            println("El campo '$nombre' no existe.")
+            return
+        }
+
+        val pozosAsociados = campo.pozos.toList()
+        pozos.removeAll(pozosAsociados)
+        campos.remove(campo)
         saveData()
-        println("Campo '$nombre' eliminado con éxito.")
+        println("Campo '$nombre' y sus pozos asociados han sido eliminados con éxito.")
     }
 
     fun createPozo(campoNombre: String, nombre: String, capacidad: Double, ubicacion: String, activo: Boolean, runLife: Int) {
@@ -230,15 +237,24 @@ fun main() {
             6 -> {
                 print("Nombre del campo: ")
                 val campoNombre = readLine()!!
-                println("=== Pozos del campo '$campoNombre' ===")
-                crud.readPozos(campoNombre).forEach { pozo ->
-                    println("------------------------------------------------")
-                    println("Nombre del pozo: ${pozo.nombre}")
-                    println("Capacidad: ${pozo.capacidad} barriles")
-                    println("Ubicación: ${pozo.ubicacion}")
-                    println("Activo: ${if (pozo.activo) "Sí" else "No"}")
-                    println("RunLife: ${pozo.runLife} días")
-                    println("------------------------------------------------")
+                if (!crud.campoExiste(campoNombre)) {
+                    println("El campo '$campoNombre' no existe.")
+                } else {
+                    println("=== Pozos del campo '$campoNombre' ===")
+                    val pozos = crud.readPozos(campoNombre)
+                    if (pozos.isEmpty()) {
+                        println("No hay pozos registrados en el campo '$campoNombre'.")
+                    } else {
+                        pozos.forEach { pozo ->
+                            println("------------------------------------------------")
+                            println("Nombre del pozo: ${pozo.nombre}")
+                            println("Capacidad: ${pozo.capacidad} barriles")
+                            println("Ubicación: ${pozo.ubicacion}")
+                            println("Activo: ${if (pozo.activo) "Sí" else "No"}")
+                            println("RunLife: ${pozo.runLife} días")
+                            println("------------------------------------------------")
+                        }
+                    }
                 }
             }
             7 -> {
@@ -281,7 +297,7 @@ fun main() {
                 }
             }
             10 -> {
-                println("¡Hasta luego!")
+                println("Gracias por usar Servicios de Campo-Pozos")
                 return
             }
             else -> println("Opción no válida.")

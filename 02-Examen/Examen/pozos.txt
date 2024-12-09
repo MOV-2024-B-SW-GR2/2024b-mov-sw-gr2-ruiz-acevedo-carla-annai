@@ -1,3 +1,2 @@
-YLBR05|20.0|Este|true|50|Yulebra
-NCND04|55.0|Oeste|false|99|Capibara
-NCND06|44.0|Sur|true|99|Capibara
+CLBR01|23.0|Oeste|true|78|Culebra
+RC02|89.0|Villahermosa|false|34|Roca
