@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Gr2sw2024b_cara"
         tools:targetApi="31">
         <activity
+            android:name=".BListView"
+            android:exported="false" />
+        <activity
             android:name=".ACicloVida"
             android:exported="false" />
         <activity
