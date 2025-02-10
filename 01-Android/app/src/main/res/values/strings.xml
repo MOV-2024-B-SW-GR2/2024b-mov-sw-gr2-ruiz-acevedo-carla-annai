@@ -2,4 +2,11 @@
     <string name="app_name">gr2sw2024b_cara</string>
     <string name="greeting">Hello World :D</string>
     <color name="greeting_color">#B22BC7</color>
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
+    <string name="title_activity_ggoogle_maps_placecholder">GGoogleMapsPlacecholder</string>
+    <string name="title_activity_ggoogle_maps">GGoogleMaps</string>
 </resources>

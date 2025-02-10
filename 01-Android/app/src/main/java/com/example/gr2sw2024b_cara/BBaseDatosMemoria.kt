@@ -1,5 +1,7 @@
 package com.example.gr2sw2024b_cara
 
+import com.example.gr2sw2024b_cara.BEntrenador
+
 class BBaseDatosMemoria {
     companion object{
         var arregloBEntrenador = arrayListOf<BEntrenador>()
