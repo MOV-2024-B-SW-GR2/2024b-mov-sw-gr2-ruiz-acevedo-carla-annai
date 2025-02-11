@@ -127,6 +127,7 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
     }
 
     // Registrar Pozo
+
     fun registrarPozo(pozo: Pozo): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {
