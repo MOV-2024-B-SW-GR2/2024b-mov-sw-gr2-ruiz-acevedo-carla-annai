@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearCampoPetroleroActivity">
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Campo Petrolero"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        app:layout_constraintEnd_toStartOf="@+id/it_nombre_cp"
+        app:layout_constraintTop_toTopOf="@+id/it_nombre_cp" />
+
+    <EditText
+        android:id="@+id/it_nombre_cp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo" />
+
+    <!-- País de Origen -->
+    <TextView
+        android:id="@+id/tv_pais_origen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="País de Origen:"
+        app:layout_constraintEnd_toStartOf="@+id/it_pais_origen"
+        app:layout_constraintTop_toBottomOf="@+id/it_nombre_cp" />
+
+    <EditText
+        android:id="@+id/it_pais_origen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_pais_origen"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pais_origen" />
+
+    <!-- Fecha de Instalación -->
+    <TextView
+        android:id="@+id/tv_fecha_instalacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Instalación:"
+        app:layout_constraintEnd_toStartOf="@+id/it_fecha_instalacion"
+        app:layout_constraintTop_toBottomOf="@+id/it_pais_origen" />
+
+    <EditText
+        android:id="@+id/it_fecha_instalacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_fecha_instalacion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fecha_instalacion" />
+
+    <!-- Número de Pozos -->
+    <TextView
+        android:id="@+id/tv_numero_pozos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de Pozos:"
+        app:layout_constraintEnd_toStartOf="@+id/it_numero_pozos"
+        app:layout_constraintTop_toBottomOf="@+id/it_fecha_instalacion" />
+
+    <EditText
+        android:id="@+id/it_numero_pozos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_numero_pozos"
+        app:layout_constraintTop_toBottomOf="@+id/tv_numero_pozos" />
+
+    <!-- Código del Campo -->
+    <TextView
+        android:id="@+id/tv_codigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Código:"
+        app:layout_constraintEnd_toStartOf="@+id/it_codigo_cp"
+        app:layout_constraintTop_toBottomOf="@+id/it_numero_pozos" />
+
+    <EditText
+        android:id="@+id/it_codigo_cp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_codigo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_codigo" />
+
+    <!-- Lista de Pozos -->
+    <TextView
+        android:id="@+id/tv_lista_pozos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pozos Asociados:"
+        app:layout_constraintEnd_toStartOf="@+id/lv_pozos"
+        app:layout_constraintTop_toBottomOf="@+id/it_codigo_cp" />
+
+    <ListView
+        android:id="@+id/lv_pozos"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_lista_pozos"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lista_pozos" />
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/btn_guardar_cp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv_pozos"
+        app:layout_constraintVertical_bias="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

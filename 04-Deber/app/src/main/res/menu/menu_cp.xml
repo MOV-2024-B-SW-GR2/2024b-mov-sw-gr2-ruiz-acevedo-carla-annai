@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/m_ver_cp"
+        android:title="Ver Campo Petrolero"/>
+    <item
+        android:id="@+id/m_editar_cp"
+        android:title="Editar Campo Petrolero"/>
+    <item
+        android:id="@+id/m_eliminar_cp"
+        android:title="Eliminar Campo Petrolero"/>
+</menu>

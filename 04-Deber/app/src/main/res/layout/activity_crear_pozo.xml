@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearPozoActivity">
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Pozo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/it_nombre_pozo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- Nombre del Pozo -->
+    <TextView
+        android:id="@+id/tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        app:layout_constraintEnd_toStartOf="@+id/it_nombre_pozo"
+        app:layout_constraintTop_toTopOf="@+id/it_nombre_pozo" />
+
+    <EditText
+        android:id="@+id/it_nombre_pozo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo" />
+
+    <!-- Capacidad del Pozo -->
+    <TextView
+        android:id="@+id/tv_capacidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capacidad (bbl):"
+        app:layout_constraintEnd_toStartOf="@+id/it_capacidad_pozo"
+        app:layout_constraintTop_toTopOf="@+id/it_capacidad_pozo" />
+
+    <EditText
+        android:id="@+id/it_capacidad_pozo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_capacidad"
+        app:layout_constraintTop_toBottomOf="@+id/it_nombre_pozo" />
+
+    <!-- Ubicación del Pozo -->
+    <TextView
+        android:id="@+id/tv_ubicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación:"
+        app:layout_constraintEnd_toStartOf="@+id/it_ubicacion_pozo"
+        app:layout_constraintTop_toTopOf="@+id/it_ubicacion_pozo" />
+
+    <EditText
+        android:id="@+id/it_ubicacion_pozo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_ubicacion"
+        app:layout_constraintTop_toBottomOf="@+id/it_capacidad_pozo" />
+
+    <!-- Estado del Pozo (Activo/Inactivo) -->
+    <TextView
+        android:id="@+id/tv_estado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activo:"
+        app:layout_constraintEnd_toStartOf="@+id/sw_activo_pozo"
+        app:layout_constraintTop_toTopOf="@+id/sw_activo_pozo" />
+
+    <Switch
+        android:id="@+id/sw_activo_pozo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_estado"
+        app:layout_constraintTop_toBottomOf="@+id/it_ubicacion_pozo" />
+
+    <!-- Tiempo de Vida del Pozo -->
+    <TextView
+        android:id="@+id/tv_runLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vida útil (años):"
+        app:layout_constraintEnd_toStartOf="@+id/it_runLife_pozo"
+        app:layout_constraintTop_toTopOf="@+id/it_runLife_pozo" />
+
+    <EditText
+        android:id="@+id/it_runLife_pozo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_runLife"
+        app:layout_constraintTop_toBottomOf="@+id/sw_activo_pozo" />
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/btn_guardar_pozo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/it_runLife_pozo"
+        app:layout_constraintVertical_bias="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
