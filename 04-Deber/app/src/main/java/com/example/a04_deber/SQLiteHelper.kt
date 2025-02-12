@@ -11,8 +11,14 @@ import java.time.LocalDate
 class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
     contexto, "moviles", null, 1
 ) {
+
+    init {
+        // Eliminar la base de datos si es necesario (solo para pruebas, no recomendado para producción)
+        contexto?.deleteDatabase("moviles")
+    }
+
     override fun onCreate(db: SQLiteDatabase?) {
-        // Crear tabla CampoPetrolero sin el campo "ubicacion"
+        // Crear tabla CAMPOPETROLERO
         val scriptSQLCrearTablaCampoPetrolero =
             """
                 CREATE TABLE CAMPOPETROLERO(
@@ -28,7 +34,7 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
             """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaCampoPetrolero)
 
-        // Crear tabla Pozo con runLife
+        // Crear tabla POZO
         val scriptSQLCrearTablaPozo =
             """
                 CREATE TABLE POZO(
@@ -66,9 +72,15 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         // Implementar la lógica de actualización si es necesario
+        // Este código borra la base de datos si las tablas necesitan actualizarse (solo en desarrollo)
+        if (oldVersion < newVersion) {
+            db?.execSQL("DROP TABLE IF EXISTS CAMPOPETROLERO")
+            db?.execSQL("DROP TABLE IF EXISTS POZO")
+            onCreate(db)
+        }
     }
 
-    // Registrar CampoPetrolero (sin "ubicacion")
+    // Registrar CampoPetrolero
     fun registrarCampoPetrolero(campoPetrolero: CampoPetrolero): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {
@@ -85,7 +97,7 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
         return resultado != -1L
     }
 
-    // Listar CampoPetroleros (sin "ubicacion")
+    // Listar CampoPetroleros
     fun listarCampoPetroleros(): ArrayList<CampoPetrolero> {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT * FROM CAMPOPETROLERO", null)
@@ -117,7 +129,7 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
         db.close()
     }
 
-    // Actualizar CampoPetrolero (sin "ubicacion")
+    // Actualizar CampoPetrolero
     fun actualizarCampoPetrolero(campoPetrolero: CampoPetrolero): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {
@@ -135,7 +147,6 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
     }
 
     // Registrar Pozo
-
     fun registrarPozo(pozo: Pozo): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {

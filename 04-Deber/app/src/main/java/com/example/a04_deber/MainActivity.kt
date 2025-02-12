@@ -53,6 +53,11 @@ class MainActivity : AppCompatActivity() {
             // Obtener la lista de campos petroleros de la base de datos
             camposPetroleros = BDSQLite.bdsqLite?.listarCampoPetroleros() ?: ArrayList()
 
+            // Verifica si la lista está vacía
+            if (camposPetroleros.isEmpty()) {
+                mostrarSnackbar("No se encontraron campos petroleros.")
+            }
+
             // Crear el adaptador para mostrar los campos petroleros
             val adapter = ArrayAdapter(
                 this,
@@ -61,7 +66,9 @@ class MainActivity : AppCompatActivity() {
             )
             listViewCamposPetroleros.adapter = adapter
         } catch (e: Exception) {
-            mostrarSnackbar("Error al cargar los campos petroleros.")
+            // Imprimir el stack trace para obtener más detalles
+            e.printStackTrace()
+            mostrarSnackbar("Error al cargar los campos petroleros: ${e.message}")
         }
     }
 
