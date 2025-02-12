@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity() {
             R.id.m_ver_ubicacion -> {
                 campoPetroleroSeleccionado?.let {
                     val intent = Intent(this, MapsActivity::class.java)
+                    intent.putExtra("campoPetroleroId", it.id)  // Asegúrate de pasar el ID aquí también
                     intent.putExtra("latitud", it.latitud)
                     intent.putExtra("longitud", it.longitud)
                     startActivity(intent)

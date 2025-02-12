@@ -146,6 +146,18 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
         return resultado > 0
     }
 
+
+    fun actualizarCampoPetroleroUbicacion(id: Int, latitud: Double, longitud: Double): Boolean {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put("latitud", latitud)
+            put("longitud", longitud)
+        }
+        val resultado = db.update("CAMPOPETROLERO", valores, "id = ?", arrayOf(id.toString()))
+        db.close()
+        return resultado > 0
+    }
+
     // Registrar Pozo
     fun registrarPozo(pozo: Pozo): Boolean {
         val db = writableDatabase

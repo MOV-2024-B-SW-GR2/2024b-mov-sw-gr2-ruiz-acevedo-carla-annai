@@ -2,19 +2,25 @@ package com.example.a04_deber
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
+import android.widget.Toast
+import android.util.Log
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Marker
 import com.example.a04_deber.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private var currentMarker: Marker? = null
+    private var latitud: Double = 0.0
+    private var longitud: Double = 0.0
+    private var campoPetroleroId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,39 +31,78 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Obtener la latitud, longitud e id del campo petrolero desde el Intent
+        latitud = intent.getDoubleExtra("latitud", 0.0)
+        longitud = intent.getDoubleExtra("longitud", 0.0)
+        campoPetroleroId = intent.getIntExtra("campoPetroleroId", 0)
+
+        // Verificar si el campoPetroleroId es válido
+        if (campoPetroleroId == 0) {
+            Toast.makeText(this, "ID del campo petrolero no válido.", Toast.LENGTH_SHORT).show()
+        } else {
+            Log.d("MapsActivity", "Campo Petrolero ID recibido: $campoPetroleroId")
+        }
     }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val latitud = intent.getDoubleExtra("latitud", 0.0)
-        val longitud = intent.getDoubleExtra("longitud", 0.0)
+
+        // Configurar el mapa
         with(mMap.uiSettings) {
             isZoomControlsEnabled = true
             isZoomGesturesEnabled = true
             isCompassEnabled = true
             isMapToolbarEnabled = true
         }
+
+        // Agregar marcador en la ubicación inicial
         val ubicacion = LatLng(latitud, longitud)
-        mMap.addMarker(
-            MarkerOptions()
-                .position(ubicacion)
-                .title("ubicacion")
-                .snippet("Coordenadas: $latitud, $longitud")
+        currentMarker = mMap.addMarker(
+            MarkerOptions().position(ubicacion).title("Ubicación actual")
         )
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 15f))
-        mMap.setOnMarkerClickListener { marker ->
-            marker.showInfoWindow()
-            true
+
+        // Permitir al usuario mover el marcador y actualizar la ubicación
+        mMap.setOnMapClickListener { latLng ->
+            // Eliminar el marcador actual
+            currentMarker?.remove()
+
+            // Colocar un nuevo marcador en la posición seleccionada
+            currentMarker = mMap.addMarker(
+                MarkerOptions().position(latLng).title("Nueva ubicación")
+            )
+
+            // Actualizar las coordenadas
+            latitud = latLng.latitude
+            longitud = latLng.longitude
+
+            // Guardar la nueva ubicación automáticamente
+            guardarNuevaUbicacion()
+
+            // Mostrar mensaje de la nueva ubicación
+            Toast.makeText(this, "Ubicación cambiada y guardada: $latitud, $longitud", Toast.LENGTH_SHORT).show()
         }
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    private fun guardarNuevaUbicacion() {
+        try {
+            // Verificar si el campoPetroleroId es válido antes de intentar actualizar
+            if (campoPetroleroId == 0) {
+                Toast.makeText(this, "ID del campo petrolero no válido.", Toast.LENGTH_SHORT).show()
+                return
+            }
 
+            val db = BDSQLite.bdsqLite
+            val actualizado = db?.actualizarCampoPetroleroUbicacion(campoPetroleroId, latitud, longitud)
+
+            if (actualizado == true) {
+                Toast.makeText(this, "Ubicación guardada con éxito.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "No se pudo guardar la ubicación.", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error al guardar la ubicación: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
 }
