@@ -28,7 +28,6 @@
         app:layout_constraintEnd_toStartOf="@+id/it_nombre_cp"
         app:layout_constraintTop_toTopOf="@+id/it_nombre_cp" />
 
-    <!-- País de Origen -->
     <EditText
         android:id="@+id/it_nombre_cp"
         android:layout_width="0dp"
@@ -39,6 +38,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_nombre"
         app:layout_constraintTop_toBottomOf="@+id/tv_titulo" />
 
+    <!-- País de Origen -->
     <TextView
         android:id="@+id/tv_pais_origen"
         android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_numero_pozos"
         app:layout_constraintTop_toBottomOf="@+id/tv_numero_pozos" />
 
-    <!-- Código del Campo -->
+    <!-- Código -->
     <TextView
         android:id="@+id/tv_codigo"
         android:layout_width="wrap_content"
@@ -110,27 +110,43 @@
         app:layout_constraintStart_toStartOf="@+id/tv_codigo"
         app:layout_constraintTop_toBottomOf="@+id/tv_codigo" />
 
-    <!-- Lista de Pozos -->
-
-    <!-- Botón Guardar -->
+    <!-- Latitud -->
     <TextView
-        android:id="@+id/tv_lista_pozos"
+        android:id="@+id/tv_latitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Pozos Asociados:"
-        app:layout_constraintEnd_toStartOf="@+id/lv_pozos"
+        android:text="Latitud:"
+        app:layout_constraintEnd_toStartOf="@+id/it_latitud_cp"
         app:layout_constraintTop_toBottomOf="@+id/it_codigo_cp" />
 
-    <ListView
-        android:id="@+id/lv_pozos"
+    <EditText
+        android:id="@+id/it_latitud_cp"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_lista_pozos"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lista_pozos" />
+        app:layout_constraintStart_toStartOf="@+id/tv_latitud"
+        app:layout_constraintTop_toBottomOf="@+id/tv_latitud" />
 
+    <!-- Longitud -->
+    <TextView
+        android:id="@+id/tv_longitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitud:"
+        app:layout_constraintEnd_toStartOf="@+id/it_longitud_cp"
+        app:layout_constraintTop_toBottomOf="@+id/it_latitud_cp" />
+
+    <EditText
+        android:id="@+id/it_longitud_cp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_longitud"
+        app:layout_constraintTop_toBottomOf="@+id/tv_longitud" />
+
+    <!-- Botón Guardar -->
     <Button
         android:id="@+id/btn_guardar_cp"
         android:layout_width="wrap_content"
@@ -139,6 +155,6 @@
         android:text="Guardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_pozos" />
+        app:layout_constraintTop_toBottomOf="@+id/it_longitud_cp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

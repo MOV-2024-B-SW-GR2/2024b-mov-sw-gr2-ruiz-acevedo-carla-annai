@@ -11,6 +11,8 @@ class CampoPetrolero(
     var paisOrigen: String,
     var numeroPozos: Int,
     var codigo: String,
+    var latitud: Double,  // Nueva propiedad
+    var longitud: Double, // Nueva propiedad
     var pozos: MutableList<Pozo> = mutableListOf()
 ) : Parcelable {
 
@@ -21,6 +23,8 @@ class CampoPetrolero(
         parcel.readString() ?: "",
         parcel.readInt(),
         parcel.readString() ?: "",
+        parcel.readDouble(), // Leer latitud
+        parcel.readDouble(), // Leer longitud
         mutableListOf<Pozo>().apply {
             // Usamos readTypedList en lugar de readList
             parcel.readTypedList(this, Pozo.CREATOR)
@@ -34,6 +38,8 @@ class CampoPetrolero(
         parcel.writeString(paisOrigen)
         parcel.writeInt(numeroPozos)
         parcel.writeString(codigo)
+        parcel.writeDouble(latitud) // Escribir latitud
+        parcel.writeDouble(longitud) // Escribir longitud
         parcel.writeList(pozos) // No hay cambio en esta parte
     }
 

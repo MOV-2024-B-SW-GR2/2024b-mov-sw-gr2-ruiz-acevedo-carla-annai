@@ -108,6 +108,14 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+            R.id.m_ver_ubicacion -> {
+                campoPetroleroSeleccionado?.let {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    intent.putExtra("latitud", it.latitud)
+                    intent.putExtra("longitud", it.longitud)
+                    startActivity(intent)
+                }
+            }
         }
         return super.onContextItemSelected(item)
     }

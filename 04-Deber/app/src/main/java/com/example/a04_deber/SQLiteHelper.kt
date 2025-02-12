@@ -21,7 +21,9 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
                     fecha_instalacion DATE,
                     pais_origen VARCHAR(100),
                     numero_pozos INTEGER,
-                    codigo VARCHAR(50)
+                    codigo VARCHAR(50),
+                    latitud DOUBLE,
+                    longitud DOUBLE
                 )
             """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaCampoPetrolero)
@@ -75,6 +77,8 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
             put("pais_origen", campoPetrolero.paisOrigen)
             put("numero_pozos", campoPetrolero.numeroPozos)
             put("codigo", campoPetrolero.codigo)
+            put("latitud", campoPetrolero.latitud)
+            put("longitud", campoPetrolero.longitud)
         }
         val resultado = db.insert("CAMPOPETROLERO", null, valores)
         db.close()
@@ -95,7 +99,9 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
                     LocalDate.parse(cursor.getString(2)), // Asumiendo que "fecha_instalacion" es un String
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getDouble(6),
+                    cursor.getDouble(7)
                 )
             )
         }
@@ -120,6 +126,8 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(
             put("pais_origen", campoPetrolero.paisOrigen)
             put("numero_pozos", campoPetrolero.numeroPozos)
             put("codigo", campoPetrolero.codigo)
+            put("latitud", campoPetrolero.latitud)
+            put("longitud", campoPetrolero.longitud)
         }
         val resultado = db.update("CAMPOPETROLERO", valores, "id = ?", arrayOf(campoPetrolero.id.toString()))
         db.close()

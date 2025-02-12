@@ -9,4 +9,7 @@
     <item
         android:id="@+id/m_eliminar_cp"
         android:title="Eliminar Campo Petrolero"/>
+    <item
+        android:id="@+id/m_ver_ubicacion"
+        android:title="Ver Ubicacion Campo Petrolero" />
 </menu>

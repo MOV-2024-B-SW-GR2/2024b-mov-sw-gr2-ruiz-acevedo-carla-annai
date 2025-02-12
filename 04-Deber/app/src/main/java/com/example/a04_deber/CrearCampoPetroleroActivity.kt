@@ -33,6 +33,8 @@ class CrearCampoPetroleroActivity : AppCompatActivity() {
         val itPaisOrigen = findViewById<EditText>(R.id.it_pais_origen)
         val itNumeroPozos = findViewById<EditText>(R.id.it_numero_pozos)
         val itCodigo = findViewById<EditText>(R.id.it_codigo_cp)
+        val itLatitud = findViewById<EditText>(R.id.it_latitud_cp)
+        val itLongitud = findViewById<EditText>(R.id.it_longitud_cp)
 
         // Recuperar datos si es una edición
         campoPetroleroId = intent.getIntExtra("campoPetroleroId", -1)
@@ -41,13 +43,18 @@ class CrearCampoPetroleroActivity : AppCompatActivity() {
         val paisOrigen = intent.getStringExtra("paisOrigen")
         val numeroPozos = intent.getIntExtra("numeroPozos", -1)
         val codigo = intent.getStringExtra("codigo")
+        val latitud = intent.getDoubleExtra("latitud", Double.NaN)
+        val longitud = intent.getDoubleExtra("longitud", Double.NaN)
 
-        if (campoPetroleroId != -1 && nombre != null && fechaInstalacion != null && paisOrigen != null && numeroPozos != -1 && codigo != null) {
+        if (campoPetroleroId != -1 && nombre != null && fechaInstalacion != null && paisOrigen != null
+            && numeroPozos != -1 && codigo != null && !latitud.isNaN() && !longitud.isNaN()) {
             itNombre.setText(nombre)
             itFechaInstalacion.setText(fechaInstalacion)
             itPaisOrigen.setText(paisOrigen)
             itNumeroPozos.setText(numeroPozos.toString())
             itCodigo.setText(codigo)
+            itLatitud.setText(latitud.toString())
+            itLongitud.setText(longitud.toString())
         }
 
         btnGuardar.setOnClickListener {
@@ -56,8 +63,11 @@ class CrearCampoPetroleroActivity : AppCompatActivity() {
             val nuevoPaisOrigen = itPaisOrigen.text.toString()
             val nuevoNumeroPozos = itNumeroPozos.text.toString()
             val nuevoCodigo = itCodigo.text.toString()
+            val nuevaLatitud = itLatitud.text.toString()
+            val nuevaLongitud = itLongitud.text.toString()
 
-            if (nuevoNombre.isEmpty() || nuevaFechaInstalacion.isEmpty() || nuevoPaisOrigen.isEmpty() || nuevoNumeroPozos.isEmpty() || nuevoCodigo.isEmpty()) {
+            if (nuevoNombre.isEmpty() || nuevaFechaInstalacion.isEmpty() || nuevoPaisOrigen.isEmpty() ||
+                nuevoNumeroPozos.isEmpty() || nuevoCodigo.isEmpty()) {
                 mostrarSnackbar("Por favor, llene todos los campos")
             } else {
                 // Validar el formato de la fecha
@@ -75,6 +85,15 @@ class CrearCampoPetroleroActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
+                // Validar latitud y longitud
+                val nuevaLatitudDouble = nuevaLatitud.toDoubleOrNull()
+                val nuevaLongitudDouble = nuevaLongitud.toDoubleOrNull()
+
+                if (nuevaLatitudDouble == null || nuevaLongitudDouble == null) {
+                    mostrarSnackbar("Latitud y longitud deben ser valores numéricos válidos.")
+                    return@setOnClickListener
+                }
+
                 val campoPetrolero = CampoPetrolero(
                     id = campoPetroleroId ?: 0,  // El ID se asignará automáticamente si es nuevo
                     nombre = nuevoNombre,
@@ -82,6 +101,8 @@ class CrearCampoPetroleroActivity : AppCompatActivity() {
                     paisOrigen = nuevoPaisOrigen,
                     numeroPozos = nuevoNumeroPozosInt,
                     codigo = nuevoCodigo,
+                    latitud = nuevaLatitudDouble,
+                    longitud = nuevaLongitudDouble,
                     pozos = mutableListOf()
                 )
 
